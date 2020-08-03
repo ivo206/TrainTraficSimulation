@@ -33,12 +33,6 @@ class Producer:
         self.num_partitions = num_partitions
         self.num_replicas = num_replicas
 
-        #
-        #
-        # TODO: Configure the broker properties below. Make sure to reference the project README
-        # and use the Host URL for Kafka and Schema Registry!
-        #
-        #
         self.broker_properties = {
             "bootstrap.servers": Producer.BROKER_URL,
             'schema.registry.url': Producer.SCHEMA_REGISTRY,
@@ -57,12 +51,6 @@ class Producer:
 
     def create_topic(self):
         """Creates the producer topic if it does not already exist"""
-        #
-        #
-        # TODO: Write code that creates the topic for this producer if it does not already exist on
-        # the Kafka Broker.
-        #
-        #
         client = AdminClient({"bootstrap.servers": Producer.BROKER_URL})
         client.create_topics([NewTopic(
             topic = self.topic_name,
@@ -76,11 +64,6 @@ class Producer:
 
     def close(self):
         """Prepares the producer for exit by cleaning up the producer"""
-        #
-        #
-        # TODO: Write cleanup code for the Producer here
-        #
-        #
         if self.producer is not None:
             self.producer.flush()
         logger.info("producer closed")
